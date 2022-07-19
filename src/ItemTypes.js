@@ -1,4 +1,4 @@
-// the five types of item used in the app
+// types of item used in the app
 export const ItemTypes = {
     Woodstock: 'Woodstock',
     Snoopy: 'Snoopy',
