@@ -1,4 +1,4 @@
-// types of item used in the app
+// characters used in the app
 export const ItemTypes = {
     Woodstock: 'Woodstock',
     Snoopy: 'Snoopy',
@@ -7,5 +7,8 @@ export const ItemTypes = {
     Linus: 'Linus',
     PeppermintPatty: 'Peppermint Patty',
     SallyBrown: 'Sally Brown',
-    Franklin: 'Franklin'
+    Franklin: 'Franklin',
+    Schroeder: 'Schroeder',
+    PigPen: 'Pig-Pen',
+    Marcie: 'Marcie'
   }

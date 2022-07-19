@@ -4,7 +4,7 @@ import { Box } from './Box.js'
 import { Recipient } from './Recipient.js'
 import { ItemTypes } from './ItemTypes.js'
 import "./App.css";
-// the five images used in the app
+// images used in the app
 import imgSnoopy from './images/snoopy.png';
 import imgWoodstock from './images/woodstock.png';
 import imgCharlieBrown from './images/charliebrown.png';
@@ -13,10 +13,15 @@ import imgLinus from './images/linus.png';
 import imgPeppermintPatty from './images/peppermintpatty.png';
 import imgSallyBrown from './images/sallybrown.png';
 import imgFranklin from './images/franklin.png';
+import imgSchroeder from './images/schroeder.png';
+import imgPigPen from './images/pigpen.png';
+import imgMarcie from './images/marcie.png';
 
 export const App = memo(function App() {
-  // recipients
-  const [recipients, setRecipients] = useState([
+  // total number of recipients on the screen
+  const numRecipients = 8;
+  // shuffle recipients and get the first 8 (numRecipients)
+  const [recipients, setRecipients] = useState(shuffleArray([
     { accepts: [ItemTypes.Snoopy], lastDroppedItem: null },
     { accepts: [ItemTypes.Woodstock], lastDroppedItem: null },
     { accepts: [ItemTypes.CharlieBrown], lastDroppedItem: null },
@@ -24,8 +29,11 @@ export const App = memo(function App() {
     { accepts: [ItemTypes.Linus], lastDroppedItem: null },
     { accepts: [ItemTypes.PeppermintPatty], lastDroppedItem: null },
     { accepts: [ItemTypes.SallyBrown], lastDroppedItem: null },
-    { accepts: [ItemTypes.Franklin], lastDroppedItem: null }
-  ])
+    { accepts: [ItemTypes.Franklin], lastDroppedItem: null },
+    { accepts: [ItemTypes.Schroeder], lastDroppedItem: null },
+    { accepts: [ItemTypes.PigPen], lastDroppedItem: null },
+    { accepts: [ItemTypes.Marcie], lastDroppedItem: null }
+  ]).slice(0, numRecipients))
   // boxes/draggable items
   const [boxes] = useState([
     { name: 'Snoopy', type: ItemTypes.Snoopy, image: imgSnoopy  },
@@ -35,11 +43,23 @@ export const App = memo(function App() {
     { name: 'Linus', type: ItemTypes.Linus, image: imgLinus  },
     { name: 'PeppermintPatty', type: ItemTypes.PeppermintPatty, image: imgPeppermintPatty  },
     { name: 'SallyBrown', type: ItemTypes.SallyBrown, image: imgSallyBrown  },
-    { name: 'Franklin', type: ItemTypes.Franklin, image: imgFranklin  }
+    { name: 'Franklin', type: ItemTypes.Franklin, image: imgFranklin  },
+    { name: 'Schroeder', type: ItemTypes.Schroeder, image: imgSchroeder  },
+    { name: 'Pig-Pen', type: ItemTypes.PigPen, image: imgPigPen  },
+    { name: 'Marcie', type: ItemTypes.Marcie, image: imgMarcie  }
   ])
   const [droppedBoxNames, setDroppedBoxNames] = useState([])
   function isDropped(boxName) {
     return droppedBoxNames.indexOf(boxName) > -1
+  }
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+      const temp = array[i]
+      array[i] = array[j]
+      array[j] = temp
+    }
+    return array
   }
   const handleDrop = useCallback(
     (index, item) => {
@@ -65,18 +85,23 @@ export const App = memo(function App() {
         <h1 className="h1 text-gradient">The Peanuts<br/>Game</h1>
       </div>
       <div className="container">
-        {recipients.map(({ accepts, lastDroppedItem }, index) => (
+        {
+        // map recipients
+        recipients.map(({ accepts, lastDroppedItem }, index) => (
           <Recipient
             accept={accepts}
             lastDroppedItem={lastDroppedItem}
             numDroppedBoxes={droppedBoxNames.length}
             onDrop={(item) => handleDrop(index, item)}
             key={index}
+            numRecipients={numRecipients}
           />
         ))}
       </div>
 
-      {boxes.map(({ name, type, image }, index) => (
+      {
+      // map boxes, but only the ones that accept the item type of the recipient
+      boxes.filter(({ type }) => recipients.some(({ accepts }) => accepts.includes(type))).map(({ name, type, image }, index) => (
         <Box
           name={name}
           type={type}

@@ -7,6 +7,7 @@ export const Recipient = memo(function Recipient({
   lastDroppedItem,
   numDroppedBoxes,
   onDrop,
+  numRecipients
 }) {
   const [{ isOver, canDrop }, drop] = useDrop({
     accept,
@@ -35,7 +36,7 @@ export const Recipient = memo(function Recipient({
           <img src={lastDroppedItem.image} alt={lastDroppedItem.name} />
           <Confetti
             run={ true }
-            recycle = { numDroppedBoxes < 8 ? false : true }
+            recycle = { numDroppedBoxes < numRecipients ? false : true }
           />
         </>
       )}
