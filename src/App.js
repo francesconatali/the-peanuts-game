@@ -82,7 +82,7 @@ export const App = memo(function App() {
   return (
     <>
       <div id="title">
-        <h1 className="h1 text-gradient">The Peanuts<br/>Game</h1>
+        <h1 className="h1 text-gradient">The Peanuts Game</h1>
       </div>
       <div className="container">
         {

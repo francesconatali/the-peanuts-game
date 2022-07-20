@@ -2,8 +2,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    flex: 1 0 21%;
     margin: 2%;
+    flex: 0 0 20%;
     min-height: 20vw;
     max-height: 20vw;
     color: white;
@@ -13,10 +13,14 @@
     line-height: normal;
     background-color: rgb(43 43 43 / 60%);
     border-radius: 0.5rem;
-    animation: fadeInRecipient 2s ease both, slideIn 2s ease both;
+    animation: fadeInRecipient 1.5s ease both, slideIn 1.5s ease both;
 }
 
 .recipient img {
+    height: 100%;
+}
+
+.recipient canvas {
     height: 100%;
 }
 
