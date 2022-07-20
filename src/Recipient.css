@@ -12,8 +12,47 @@
     font-size: 1rem;
     line-height: normal;
     background-color: rgb(43 43 43 / 60%);
+    border-radius: 0.5rem;
+    animation: fadeInRecipient 2s ease both, slideIn 2s ease both;
 }
 
 .recipient img {
     height: 100%;
+}
+
+@keyframes fadeInRecipient{
+    0% { opacity:0; }
+    100% { opacity:1; }
+}
+
+@keyframes slideIn {
+    0% { transform: translateY(+10%); }
+    100% { transform: translateX(0); }
+}
+
+/* Sliding in one after the other.
+   This would be quicker with SCSS, but doing it manually here */
+.recipient:nth-child(1) {
+    animation-delay: 0s;
+}
+.recipient:nth-child(2) {
+    animation-delay: 0.1s;
+}
+.recipient:nth-child(3) {
+    animation-delay: 0.2s;
+}
+.recipient:nth-child(4) {
+    animation-delay: 0.3s;
+}
+.recipient:nth-child(5) {
+    animation-delay: 0.4s;
+}
+.recipient:nth-child(6) {
+    animation-delay: 0.5s;
+}
+.recipient:nth-child(7) {
+    animation-delay: 0.6s;
+}
+.recipient:nth-child(8) {
+    animation-delay: 0.7s;
 }
