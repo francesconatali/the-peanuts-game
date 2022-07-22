@@ -1,7 +1,9 @@
 import { memo } from 'react'
 import { useDrop } from 'react-dnd'
 import Confetti from 'react-confetti';
-import "./Recipient.css";
+import "../../assets/styles/Recipient.css";
+import CHARACTERS from "../../constants/Config";
+
 export const Recipient = memo(function Recipient({
   accept,
   lastDroppedItem,
@@ -28,7 +30,7 @@ export const Recipient = memo(function Recipient({
       {!lastDroppedItem &&
       (isActive
         ? 'Release to drop'
-        : `${accept}`)
+        : `${CHARACTERS[accept].name}`)
       }
       {/* when the image is dropped, show the image in the recipient and show confetti! */}
       {lastDroppedItem && (

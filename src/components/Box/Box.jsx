@@ -1,6 +1,7 @@
 import { memo, useRef } from 'react'
 import { useDrag } from 'react-dnd'
-import "./Box.css";
+import "../../assets/styles/Box.css";
+import CHARACTERS from "../../constants/Config";
 
 export const Box = memo(function Box({ name, type, image, isDropped }) {
   const [{ opacity }, drag] = useDrag(
@@ -21,7 +22,7 @@ export const Box = memo(function Box({ name, type, image, isDropped }) {
   });
   return (
     <div ref={drag} className="box" style={{ ...boxPosition.current, opacity, display: isDropped ? 'none' : 'block' }} data-testid="box">
-      {isDropped ? <s>{name}</s> : <img src={image} alt={type} />}
+      {isDropped ? <s>{name}</s> : <img src={image} alt={CHARACTERS[type].name} />}
     </div>
   )
 })
