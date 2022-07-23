@@ -2,9 +2,11 @@
 
 # The Peanuts Game
 
-React, HTML, CSS for a drag&drop game to test your knowledge of the Peanuts gang :)
+A little drag&drop game built in React to test your knowledge of the Peanuts gang. At each page load, 8 characters appear on the screen (randomly selected from the whole gang). You'll be rewarded with confetti if you get them all in the correct place!
 
-Also, here is the production version I uploaded on my website:
+Although the game itself is very straightforward, it has been an interesting little project!
+
+To try it, click here:
 https://francesconatali.com/personalprojects/thepeanutsgame/
 
 Enjoy!
